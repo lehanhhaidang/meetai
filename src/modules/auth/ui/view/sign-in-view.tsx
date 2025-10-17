@@ -1,16 +1,17 @@
 "use client";
-import {z} from "zod";
-import {OctagonAlertIcon } from "lucide-react";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Form,
-        FormItem,
-        FormLabel,
-        FormControl,
-        FormField,
-        FormMessage
- } from "@/components/ui/form";
+import { z } from "zod";
+import { OctagonAlertIcon } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+    Form,
+    FormItem,
+    FormLabel,
+    FormControl,
+    FormField,
+    FormMessage
+} from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { useForm } from "react-hook-form";
@@ -18,11 +19,11 @@ import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {FaGithub, FaGoogle} from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const formSchema = z.object({
     email: z.email(),
-    password:z.string().min(1,{message:"Password is required"}),
+    password: z.string().min(1, { message: "Password is required" }),
 
 });
 
@@ -40,7 +41,7 @@ export const SignInView = () => {
         }
     })
 
-    const onSubmit = async (data:z.infer<typeof formSchema>) => {
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setError(null);
         setPending(true);
 
@@ -55,12 +56,12 @@ export const SignInView = () => {
                     setPending(false);
                     router.push("/")
                 },
-                onError: ({error}) => {
+                onError: ({ error }) => {
                     setPending(false);
                     setError(error.message);
                 }
             },
-       )
+        )
     };
     const onSocial = async (provider: "google" | "github") => {
         setError(null);
@@ -75,12 +76,12 @@ export const SignInView = () => {
                 onSuccess: () => {
                     setPending(false);
                 },
-                onError: ({error}) => {
+                onError: ({ error }) => {
                     setPending(false);
                     setError(error.message);
                 }
             },
-       )
+        )
     };
     return (
         <div className="flex flex-col gap-6">
@@ -98,39 +99,39 @@ export const SignInView = () => {
                                     </p>
                                 </div>
                                 <div className="grid gap-3">
-                                    <FormField 
+                                    <FormField
                                         control={form.control}
                                         name="email"
-                                        render={({field})=>(
+                                        render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Email</FormLabel>
-                                                    <FormControl>
-                                                        <Input
-                                                            type="email"
-                                                            placeholder="Enter your email"
-                                                            {...field}
-                                                        />
-                                                    </FormControl>
-                                                    <FormMessage />
+                                                <FormControl>
+                                                    <Input
+                                                        type="email"
+                                                        placeholder="Enter your email"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />
                                 </div>
                                 <div className="grid gap-3">
-                                    <FormField 
+                                    <FormField
                                         control={form.control}
                                         name="password"
-                                        render={({field})=>(
+                                        render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Password</FormLabel>
-                                                    <FormControl>
-                                                        <Input
-                                                            type="password"
-                                                            placeholder="Enter your password"
-                                                            {...field}
-                                                        />
-                                                    </FormControl>
-                                                    <FormMessage />
+                                                <FormControl>
+                                                    <Input
+                                                        type="password"
+                                                        placeholder="Enter your password"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
                                             </FormItem>
                                         )}
                                     />
@@ -145,8 +146,8 @@ export const SignInView = () => {
                                     disabled={pending}
                                     type="submit"
                                     className="w-full"
-                                    >
-                                        Sign In
+                                >
+                                    Sign In
                                 </Button>
                                 <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                                     <span className="bg-card text-muted-foreground relative z-10 px-2">
@@ -156,19 +157,19 @@ export const SignInView = () => {
                                 <div className="grid grid-cols-2 gap-4">
                                     <Button
                                         disabled={pending}
-                                        onClick={()=>{onSocial("google")}}
+                                        onClick={() => { onSocial("google") }}
                                         variant="outline"
                                         className="w-full"
                                         type="button">
-                                        <FaGoogle/>
+                                        <FaGoogle />
                                     </Button>
-                                     <Button
+                                    <Button
                                         disabled={pending}
-                                        onClick={()=>{onSocial("github")}}
+                                        onClick={() => { onSocial("github") }}
                                         variant="outline"
                                         className="w-full"
                                         type="button">
-                                        <FaGithub/>
+                                        <FaGithub />
                                     </Button>
                                 </div>
                                 <div className="text-center text-sm">
@@ -183,12 +184,12 @@ export const SignInView = () => {
                             </div>
                         </form>
                     </Form>
-                        <div className="bg-radial from-green-700 to-green-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center">
-                            <img src="./logo.svg" alt="Image" className="h-[92px] w-[92px]" />
-                            <p className="text-2xl font-semibold text-white">
-                                Meet AI
-                            </p>
-                        </div>
+                    <div className="bg-radial from-sidebar-accent to-sidebar relative hidden md:flex flex-col gap-y-4 items-center justify-center">
+                        <img src="./logo.svg" alt="Image" className="h-[92px] w-[92px]" />
+                        <p className="text-2xl font-semibold text-white">
+                            Meet AI
+                        </p>
+                    </div>
                 </CardContent>
             </Card>
             <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *[a]:underline *[a]:underline-offset-4">
