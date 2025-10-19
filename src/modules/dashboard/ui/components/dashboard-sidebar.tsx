@@ -58,7 +58,7 @@ export const DashboardSidebar = () => {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {firstSection.map((item) => (
-                                <SidebarMenuItem>
+                                <SidebarMenuItem key={item.href}>
                                     <SidebarMenuButton
                                         asChild
                                         className={cn(
@@ -86,7 +86,7 @@ export const DashboardSidebar = () => {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {secondSection.map((item) => (
-                                <SidebarMenuItem>
+                                <SidebarMenuItem key={item.href}>
                                     <SidebarMenuButton
                                         asChild
                                         className={cn(
