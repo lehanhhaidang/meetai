@@ -4,17 +4,25 @@ import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init
 import { TRPCError } from "@trpc/server";
 import { agentsInsertSchema } from "../schema";
 import { z } from "zod";
-import { eq } from "drizzle-orm";
+import { eq, getTableColumns, sql } from "drizzle-orm";
+import { sq } from "date-fns/locale";
 
 export const agentsRouter = createTRPCRouter({
-    getOne: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ input }) => {
-        const [existingAgent] = await db
-            .select()
-            .from(agents)
-            .where(eq(agents.id, input.id))
+    getOne: protectedProcedure
+        .input(z.object({ id: z.string() }))
+        .query(async ({ input }) => {
+            const [existingAgent] = await db
+                .select(
+                    {
+                        mettingCount: sql<number>`5`,
+                        ...getTableColumns(agents),
+                    }
+                )
+                .from(agents)
+                .where(eq(agents.id, input.id))
 
-        return existingAgent;
-    }),
+            return existingAgent;
+        }),
     getMany: protectedProcedure.query(async () => {
         const data = await db
             .select()
