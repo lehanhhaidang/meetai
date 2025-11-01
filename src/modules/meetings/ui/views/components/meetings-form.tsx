@@ -49,14 +49,10 @@ export const MeetingsForm = ({
 
     const createMeeting = useMutation(
         trpc.meetings.create.mutationOptions({
-            onSuccess: async (data) => {
+            onSuccess: async () => {
                 queryClient.invalidateQueries(trpc.meetings.getMany.queryOptions({}));
 
-                if (initialValues?.id) {
-                    await queryClient.invalidateQueries(trpc.meetings.getOne.queryOptions({ id: initialValues?.id }));
-                }
-                toast.success("Meeting created successfully");
-                onSuccess?.(data.id);
+                onSuccess?.();
             },
             onError: (error) => {
                 toast.error(error.message);
