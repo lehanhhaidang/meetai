@@ -44,14 +44,14 @@ export const MeetingsView = () => {
 
 export const MeetingsViewLoading = () => {
     return <LoadingState
-        title="Loading agents"
-        description="Please wait while we load the agents for you."
+        title="Loading meetings"
+        description="Please wait while we load the meetings for you."
     />;
 }
 
 export const MeetingsViewError = () => {
     return <ErrorState
-        title="Failed to load agents"
-        description="There was an error while loading the agents. Please try again later."
+        title="Failed to load meetings"
+        description="There was an error while loading the meetings. Please try again later."
     />;
 }
