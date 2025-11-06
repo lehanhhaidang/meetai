@@ -33,7 +33,7 @@ export const AgentsListHeader = () => {
                     </Button>
                 </div>
                 <ScrollArea>
-                    <div className="flex items-center gap-y-2 p-1">
+                    <div className="flex items-center gap-x-2 p-1">
                         <AgentsSearchFilters />
                         {isAnyFilterModified && (
                             <Button variant="outline" size="sm" onClick={onClearFilters}>
