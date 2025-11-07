@@ -7,8 +7,7 @@ import { MeetingsSearchFilters } from "./meetings-search-filters";
 import { StatusFilter } from "./status-filters";
 import { AgentIdFilter } from "./agent-id-filter";
 import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filters";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Scrollbar } from "@radix-ui/react-scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { DEFAULT_PAGE } from "@/constants";
 
 
@@ -52,7 +51,7 @@ export const MeetingsListHeader = () => {
                             </Button>
                         )}
                     </div>
-                    <Scrollbar
+                    <ScrollBar
                         orientation="horizontal"
                     />
                 </ScrollArea>
